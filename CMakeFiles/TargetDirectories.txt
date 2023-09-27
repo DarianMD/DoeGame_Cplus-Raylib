@@ -1,3 +1,0 @@
-/home/dmd/Escritorio/DoeGame_C-Raylib/CMakeFiles/doegame.dir
-/home/dmd/Escritorio/DoeGame_C-Raylib/CMakeFiles/edit_cache.dir
-/home/dmd/Escritorio/DoeGame_C-Raylib/CMakeFiles/rebuild_cache.dir
