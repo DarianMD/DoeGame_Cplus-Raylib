@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/dmd/Escritorio/Doe-Game-C-Raylib/main.c" "CMakeFiles/doegame.dir/main.c.o" "gcc" "CMakeFiles/doegame.dir/main.c.o.d"
+  "/home/dmd/Escritorio/DoeGame_C-Raylib/main.c" "CMakeFiles/doegame.dir/main.c.o" "gcc" "CMakeFiles/doegame.dir/main.c.o.d"
   )
 
 # Targets to which this target links.

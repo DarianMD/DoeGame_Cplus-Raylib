@@ -1,1 +1,1 @@
-/usr/bin/cc -g CMakeFiles/doegame.dir/main.c.o -o doegame  -lraylib 
+/usr/bin/cc CMakeFiles/doegame.dir/main.c.o -o doegame  -lraylib 
