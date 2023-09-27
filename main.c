@@ -4,7 +4,7 @@
 
 int main(){
     
-    InitWindow(400,400, "Hello");
+    InitWindow(450,400, "Hello");
 
 
     while(!WindowShouldClose()){
