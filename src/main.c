@@ -1,10 +1,8 @@
 #include <stdio.h>
 #include <raylib.h>
 
-
 #define MAP_TILE_SIZE 32
 #define CHARACTER_SIZE 16
-
 
 typedef struct Map
 {
@@ -22,8 +20,6 @@ int main()
     int ground_box_height = 300;
     int ground_box_width = 0;
 
-
-
     InitWindow(screen_width, screen_height, "HELLO WORLD!");
 
     Map map = {0};
@@ -33,9 +29,9 @@ int main()
     Vector2 playerPosition = {screen_width / 2, screen_height / 2};
     Vector2 ground = {ground_box_width, ground_box_height};
 
-
+    Texture2D main = LoadTexture("./src/assets/main.png");
+   
     SetTargetFPS(60);
-
 
     while (!WindowShouldClose())
     {
@@ -57,48 +53,35 @@ int main()
             playerPosition.y -= 5;
         }
 
-
-
         if (playerPosition.x < 0)
         {
             playerPosition.x = 0;
         }
-        /*else if ((playerPosition.x + CHARACTER_SIZE) > map.tilesX * MAP_TILE_SIZE)
-        {
-            playerPosition.x = (float)map.tilesX * MAP_TILE_SIZE - CHARACTER_SIZE;
-        }
-        else if ((playerPosition.y + CHARACTER_SIZE) > map.tilesY * MAP_TILE_SIZE)
-        {
-            playerPosition.y = (float)map.tilesY * MAP_TILE_SIZE - CHARACTER_SIZE;
-        }*/
 
-        else if((playerPosition.y + CHARACTER_SIZE) < ground.y){
+        else if ((playerPosition.y + CHARACTER_SIZE) < ground.y)
+        {
 
             playerPosition.y = ground.y - CHARACTER_SIZE;
-
         }
 
-         else if((playerPosition.x + CHARACTER_SIZE) > screen_width){
+        else if ((playerPosition.x + CHARACTER_SIZE) > screen_width)
+        {
 
             playerPosition.x = screen_width - CHARACTER_SIZE;
-
         }
 
-          else if((playerPosition.y + CHARACTER_SIZE) > screen_height){
+        else if ((playerPosition.y + CHARACTER_SIZE) > screen_height)
+        {
 
             playerPosition.y = screen_height - CHARACTER_SIZE;
-
         }
-
-
 
         BeginDrawing();
 
         ClearBackground(RAYWHITE);
 
         DrawRectangleV(ground, (Vector2){1000, 300}, RED);
-        DrawRectangleV(playerPosition, (Vector2){50, 50}, BLUE);
-
+        DrawTextureEx(main, playerPosition, 0, 0.5f, WHITE);
 
         EndDrawing();
     }
