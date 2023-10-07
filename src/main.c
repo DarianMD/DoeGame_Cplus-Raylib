@@ -2,44 +2,107 @@
 #include <raylib.h>
 
 
-int main(){
-    
-    InitWindow(400,400, "Hello");
+#define MAP_TILE_SIZE 32
+#define CHARACTER_SIZE 16
 
 
-    int num_x = 0;
-    int num_y = 0;
-    int num_filas = 10;
+typedef struct Map
+{
+    unsigned int tilesX;
+    unsigned int tilesY;
 
-    int r_color = 255;
-    int g_color = 255;
-    int b_color = 255;
-    int a_color = 255;
+} Map;
 
-    while(!WindowShouldClose()){
+int main()
+{
+
+    int screen_width = 1000;
+    int screen_height = 600;
+
+    int ground_box_height = 300;
+    int ground_box_width = 0;
+
+
+
+    InitWindow(screen_width, screen_height, "HELLO WORLD!");
+
+    Map map = {0};
+    map.tilesX = 50;
+    map.tilesY = 15;
+
+    Vector2 playerPosition = {screen_width / 2, screen_height / 2};
+    Vector2 ground = {ground_box_width, ground_box_height};
+
+
+    SetTargetFPS(60);
+
+
+    while (!WindowShouldClose())
+    {
+
+        if (IsKeyDown(KEY_RIGHT))
+        {
+            playerPosition.x += 5;
+        }
+        if (IsKeyDown(KEY_LEFT))
+        {
+            playerPosition.x -= 5;
+        }
+        if (IsKeyDown(KEY_DOWN))
+        {
+            playerPosition.y += 5;
+        }
+        if (IsKeyDown(KEY_UP))
+        {
+            playerPosition.y -= 5;
+        }
+
+
+
+        if (playerPosition.x < 0)
+        {
+            playerPosition.x = 0;
+        }
+        /*else if ((playerPosition.x + CHARACTER_SIZE) > map.tilesX * MAP_TILE_SIZE)
+        {
+            playerPosition.x = (float)map.tilesX * MAP_TILE_SIZE - CHARACTER_SIZE;
+        }
+        else if ((playerPosition.y + CHARACTER_SIZE) > map.tilesY * MAP_TILE_SIZE)
+        {
+            playerPosition.y = (float)map.tilesY * MAP_TILE_SIZE - CHARACTER_SIZE;
+        }*/
+
+        else if((playerPosition.y + CHARACTER_SIZE) < ground.y){
+
+            playerPosition.y = ground.y - CHARACTER_SIZE;
+
+        }
+
+         else if((playerPosition.x + CHARACTER_SIZE) > screen_width){
+
+            playerPosition.x = screen_width - CHARACTER_SIZE;
+
+        }
+
+          else if((playerPosition.y + CHARACTER_SIZE) > screen_height){
+
+            playerPosition.y = screen_height - CHARACTER_SIZE;
+
+        }
+
+
+
         BeginDrawing();
 
-        while(num_y < 400){
+        ClearBackground(RAYWHITE);
 
-            DrawPixel(num_x,num_y, (Color){.r=r_color, .g=g_color, .b=b_color, .a=a_color});
-            num_x++;
+        DrawRectangleV(ground, (Vector2){1000, 300}, RED);
+        DrawRectangleV(playerPosition, (Vector2){50, 50}, BLUE);
 
-            if(num_x == 400){
-                num_filas--;
-                num_y++;
-                num_x = 0;
-            }
 
-            if(num_filas == 0){
-                num_filas = 10;
-                r_color -= 5;
-
-            }
-            
-        }
-        
         EndDrawing();
     }
+
     CloseWindow();
     return 0;
 }
