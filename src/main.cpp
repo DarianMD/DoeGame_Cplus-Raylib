@@ -1,15 +1,8 @@
 #include <stdio.h>
 #include <raylib.h>
+#include "./obj/map.cpp"
 
-#define MAP_TILE_SIZE 32
-#define CHARACTER_SIZE 16
-
-typedef struct Map
-{
-    unsigned int tilesX;
-    unsigned int tilesY;
-
-} Map;
+Map *mapa;
 
 int main()
 {
@@ -22,14 +15,10 @@ int main()
 
     InitWindow(screen_width, screen_height, "HELLO WORLD!");
 
-    Map map = {0};
-    map.tilesX = 50;
-    map.tilesY = 15;
-
+   
     Vector2 playerPosition = {screen_width / 2, screen_height / 2};
-    Vector2 ground = {ground_box_width, ground_box_height};
 
-    Texture2D main = LoadTexture("./src/assets/main.png");
+    mapa = new Map("map/map1.json");
    
     SetTargetFPS(60);
 
@@ -58,30 +47,11 @@ int main()
             playerPosition.x = 0;
         }
 
-        else if ((playerPosition.y + CHARACTER_SIZE) < ground.y)
-        {
-
-            playerPosition.y = ground.y - CHARACTER_SIZE;
-        }
-
-        else if ((playerPosition.x + CHARACTER_SIZE) > screen_width)
-        {
-
-            playerPosition.x = screen_width - CHARACTER_SIZE;
-        }
-
-        else if ((playerPosition.y + CHARACTER_SIZE) > screen_height)
-        {
-
-            playerPosition.y = screen_height - CHARACTER_SIZE;
-        }
 
         BeginDrawing();
 
         ClearBackground(RAYWHITE);
 
-        DrawRectangleV(ground, (Vector2){1000, 300}, RED);
-        DrawTextureEx(main, playerPosition, 0, 0.5f, WHITE);
 
         EndDrawing();
     }

@@ -1,4 +1,5 @@
 cmake_minimum_required(VERSION 3.20)
 project(doegame)
-add_executable(doegame src/main.c)
+add_executable(doegame src/main.cpp)
 target_link_libraries(doegame raylib)
+set(CMAKE_CXX_STANDARD 17)
